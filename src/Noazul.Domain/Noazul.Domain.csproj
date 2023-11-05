@@ -13,4 +13,7 @@
 	  <ProjectReference Include="..\Noazul.Domain.Core\Noazul.Domain.Core.csproj" />
 	  <ProjectReference Include="..\Noazul.Infra.CrossCutting.Bus\Noazul.Infra.CrossCutting.Bus.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Commands\Validations\" />
+	</ItemGroup>
 </Project>

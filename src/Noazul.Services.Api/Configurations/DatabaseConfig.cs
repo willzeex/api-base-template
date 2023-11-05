@@ -11,8 +11,5 @@ public static class DatabaseConfig
 
         services.AddDbContext<NoazulContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
-
-        services.AddDbContext<EventStoreContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
     }
 }

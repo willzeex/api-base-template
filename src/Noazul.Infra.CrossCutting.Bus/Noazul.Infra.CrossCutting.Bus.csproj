@@ -4,6 +4,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="mediatr" Version="10.0.1" />
+		<PackageReference Include="Nudes.Retornator.Core" Version="1.0.951" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Noazul.Domain.Core\Noazul.Domain.Core.csproj" />
