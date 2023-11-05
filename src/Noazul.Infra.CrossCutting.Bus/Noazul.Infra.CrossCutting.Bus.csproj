@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="mediatr" Version="10.0.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Noazul.Domain.Core\Noazul.Domain.Core.csproj" />
+	</ItemGroup>
+</Project>

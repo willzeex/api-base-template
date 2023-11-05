@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Noazul.Domain\Noazul.Domain.csproj" />
+	  <ProjectReference Include="..\Noazul.Infra.CrossCutting.Identity\Noazul.Infra.CrossCutting.Identity.csproj" />
+	  <ProjectReference Include="..\Noazul.Infra.Data\Noazul.Infra.Data.csproj" />
+	</ItemGroup>
+
+</Project>
