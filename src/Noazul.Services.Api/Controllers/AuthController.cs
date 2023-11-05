@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using NetDevPack.Identity.Jwt;
 using NetDevPack.Identity.Model;
+using Noazul.Domain.Core;
+using Nudes.Retornator.Core;
 
 namespace Noazul.Services.Api.Controllers;
 
@@ -27,9 +29,9 @@ public class AuthController : ApiController
 
     [HttpPost]
     [Route("register")]
-    public async Task<ActionResult> Register(RegisterUserModel registerUser)
+    public async Task<ResultOf<LoginResponse>> Register(RegisterUserModel registerUser)
     {
-        if (!ModelState.IsValid) return CustomResponse(ModelState);
+        if (!ModelState.IsValid) return new BadRequestError();
 
         var user = new IdentityUser
         {
@@ -41,36 +43,31 @@ public class AuthController : ApiController
 
         var result = await userManager.CreateAsync(user, registerUser.Password);
 
-        if (result.Succeeded) return CustomResponse(GetFullJwt(user.Email));
+        if (result.Succeeded) return new LoginResponse(GetFullJwt(user.Email));
 
         foreach (var error in result.Errors)
             AddError(error.Description);
 
-        return CustomResponse();
+        return new BadRequestError(result.Errors.ToString());
     }
 
     [HttpPost]
     [Route("login")]
-    public async Task<IActionResult> Login(LoginUser loginUser)
+    public async Task<ResultOf<LoginResponse>> Login(LoginUser loginUser)
     {
-        if (!ModelState.IsValid) return CustomResponse(ModelState);
+        if (!ModelState.IsValid) return new BadRequestError();
 
         var result = await signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
 
         if (result.Succeeded)
         {
             var fullJwt = GetFullJwt(loginUser.Email);
-            return CustomResponse(fullJwt);
+            return new LoginResponse(fullJwt);
         }
 
-        if (result.IsLockedOut)
-        {
-            AddError("This user is temporarily blocked");
-            return CustomResponse();
-        }
+        if (result.IsLockedOut) return new BadRequestError("This user is temporarily blocked");
 
-        AddError("Incorrect user or password");
-        return CustomResponse();
+        return new BadRequestError("Incorrect user or password");
     }
 
     private string GetFullJwt(string email)
@@ -85,3 +82,5 @@ public class AuthController : ApiController
             .BuildToken();
     }
 }
+
+public record LoginResponse(string AccessToken);
