@@ -1,4 +1,4 @@
-What is the Equinox Project?
+What is the Noazul Project?
 =====================
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rl2ja69994rt3ei6?svg=true)](https://ci.appveyor.com/project/EduardoPires/equinoxproject)
@@ -7,6 +7,8 @@ What is the Equinox Project?
 [![Issues open](https://img.shields.io/github/issues/eduardopires/equinoxproject.svg)](https://huboard.com/EduardoPires/EquinoxProject/)
 
 ## How to use:
+- Create identity tables:
+- - Update-Database -Context NetDevPackAppDbContext
 - You will need the latest Visual Studio 2022 and the latest .NET Core SDK.
 - ***Please check if you have installed the same runtime version (SDK) described in global.json***
 - The latest SDK and tools can be downloaded from https://dot.net/core.
