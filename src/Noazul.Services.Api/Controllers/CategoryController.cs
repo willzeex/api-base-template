@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Noazul.Domain.Commands.Categories.GetById;
+using Noazul.Domain.Interfaces;
+using Noazul.Domain.Models;
 using Nudes.Retornator.Core;
 
 namespace Noazul.Services.Api.Controllers;
@@ -10,17 +12,17 @@ namespace Noazul.Services.Api.Controllers;
 public class CategoryController : ControllerBase
 {
     private readonly IMediator mediator;
+    private readonly ICategoryRepository categoryRepository;
 
-    public CategoryController(IMediator mediator)
+    public CategoryController(IMediator mediator, ICategoryRepository categoryRepository)
     {
         this.mediator = mediator;
+        this.categoryRepository = categoryRepository;
     }
 
     [HttpGet]
-    public IEnumerable<string> Get()
-    {
-        return new string[] { "value1", "value2" };
-    }
+    public async Task<IEnumerable<Category>> Get() =>
+        await categoryRepository.GetAll();
 
     [HttpGet("{id:guid}")]
     public async Task<ResultOf<GetByIdResponse>> Get(Guid id) => await mediator.Send(new GetByIdRequest(id));
