@@ -35,7 +35,7 @@ public class AuthController : ApiController
 
         var user = new IdentityUser
         {
-            UserName = registerUser.Email,
+            UserName = registerUser.UserName,
             Email = registerUser.Email,
             EmailConfirmed = true,
             PhoneNumber = registerUser.PhoneNumber

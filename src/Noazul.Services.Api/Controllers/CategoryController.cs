@@ -1,11 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Noazul.Domain.Commands.Categories.GetById;
-using Noazul.Domain.Interfaces;
-using Noazul.Domain.Models;
-using Nudes.Retornator.Core;
-
-namespace Noazul.Services.Api.Controllers;
+﻿namespace Noazul.Services.Api.Controllers;
 
 [Route("api/v1/categories")]
 [ApiController]
